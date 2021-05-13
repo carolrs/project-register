@@ -1,34 +1,33 @@
 package com.example.demo.entities;
 
-import java.io.Serializable;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 @Entity
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String email;
     private String phone;
-    private String passworld;
+    private String password;
 
     public User() {
     }
 
-    public User(Long id, String name, String email, String phone, String passworld) {
+    public User(Long id, String name, String email, String phone, String password) {
         super();
         this.id = id;
         this.name = name;
         this.email = email;
         this.phone = phone;
-        this.passworld = passworld;
+        this.password = password;
     }
 
     public Long getId() {
@@ -63,12 +62,12 @@ public class User implements Serializable {
         this.phone = phone;
     }
 
-    public String getPassworld() {
-        return passworld;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPassworld(String passworld) {
-        this.passworld = passworld;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
