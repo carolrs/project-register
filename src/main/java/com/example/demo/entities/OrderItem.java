@@ -1,7 +1,9 @@
 package com.example.demo.entities;
 
 import com.example.demo.entities.entities.pk.OrderItemPk;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -10,22 +12,25 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-@Table(name = "tb_Order_Item")
+@Table(name = "tb_order_item")
+@NoArgsConstructor
 public class OrderItem implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @EmbeddedId
-    private OrderItemPk id;
+    private OrderItemPk id = new OrderItemPk();
 
     private Integer quantity;
     private Double price;
 
     public OrderItem(Order order, Product product,Integer quantity,Double price) {
+        super();
         id.setOrder(order);
         id.setProduct(product);
         this.quantity = quantity;
         this.price = price;
     }
+    @JsonIgnore
     public Order getOrder (){
         return id.getOrder();
     }
