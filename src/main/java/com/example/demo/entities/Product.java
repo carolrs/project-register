@@ -12,24 +12,30 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table (name= "tb_category")
+@Table(name = "tb_product")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @EqualsAndHashCode
-public class Category implements Serializable {
+public class Product implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private String description;
+    private Double price;
+    private String igmUrl;
 
     @Transient
-    private Set<Product> products = new HashSet<>();
+    private Set<Category> categories = new HashSet<>();
 
-    public Category(Long id, String name) {
+    public Product(Long id, String name, String description, Double price, String igmUrl) {
         this.id = id;
         this.name = name;
+        this.description = description;
+        this.price = price;
+        this.igmUrl = igmUrl;
     }
 }
