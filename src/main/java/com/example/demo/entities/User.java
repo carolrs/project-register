@@ -1,5 +1,6 @@
 package com.example.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -24,6 +25,7 @@ public class User implements Serializable {
     private String phone;
     private String password;
 
+    @JsonIgnore //anotacao p/ parar o loop
     @OneToMany(mappedBy = "client")
     private List <Order> orders = new ArrayList<>();
 
