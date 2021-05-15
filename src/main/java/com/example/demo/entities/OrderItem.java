@@ -1,8 +1,7 @@
 package com.example.demo.entities;
 
-import com.example.demo.entities.entities.pk.OrderItemPk;
+import com.example.demo.entities.entities.pk.OrderItemPK;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.EmbeddedId;
@@ -18,7 +17,7 @@ public class OrderItem implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @EmbeddedId
-    private OrderItemPk id = new OrderItemPk();
+    private OrderItemPK id = new OrderItemPK();
 
     private Integer quantity;
     private Double price;
@@ -30,6 +29,7 @@ public class OrderItem implements Serializable {
         this.quantity = quantity;
         this.price = price;
     }
+
     @JsonIgnore
     public Order getOrder (){
         return id.getOrder();
@@ -41,6 +41,7 @@ public class OrderItem implements Serializable {
     public Product getProduct (){
         return id.getProduct();
     }
+
     public void setProduct (Product product){
         id.setProduct(product);
     }
