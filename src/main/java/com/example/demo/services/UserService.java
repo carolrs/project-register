@@ -3,7 +3,6 @@ package com.example.demo.services;
 import com.example.demo.entities.User;
 import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,7 +20,8 @@ public class UserService {
     }
     public User findById (Long id){
         Optional<User> byId = repository.findById(id);
-        return byId.get(); //vai retornar o que estiver dentro do User.
+
+        return byId.orElseThrow(() -> new RuntimeException("Lista Vazia")); //vai retornar o que estiver dentro do User.
 
     }
 }

@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @Data
 @NoArgsConstructor
-@EqualsAndHashCode(of="id")
+@EqualsAndHashCode(of = "id")
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -27,7 +27,7 @@ public class User implements Serializable {
 
     @JsonIgnore //anotacao p/ parar o loop
     @OneToMany(mappedBy = "client")
-    private List <Order> orders = new ArrayList<>();
+    private List<Order> orders = new ArrayList<>();
 
     public User(Long id, String name, String email, String phone, String password) {
         this.id = id;

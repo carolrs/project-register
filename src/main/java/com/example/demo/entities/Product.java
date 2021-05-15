@@ -1,6 +1,6 @@
 package com.example.demo.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -14,9 +14,8 @@ import java.util.Set;
 @Entity
 @Table(name = "tb_product")
 @NoArgsConstructor
-@AllArgsConstructor
 @Data
-@EqualsAndHashCode
+@EqualsAndHashCode(of = "id")
 public class Product implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -28,7 +27,8 @@ public class Product implements Serializable {
     private Double price;
     private String igmUrl;
 
-    @Transient
+    @ManyToMany
+    @JoinTable(name = "tb_product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
 
     public Product(Long id, String name, String description, Double price, String igmUrl) {
