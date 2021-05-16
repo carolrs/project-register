@@ -21,7 +21,9 @@ public class UserService {
     public User findById (Long id){
         Optional<User> byId = repository.findById(id);
 
-        return byId.orElseThrow(() -> new RuntimeException("Lista Vazia")); //vai retornar o que estiver dentro do User.
-
+        return byId.get();//vai retornar o que estiver dentro do User.
+    }
+    public User insert(User obj){
+        return repository.save(obj);
     }
 }
