@@ -19,7 +19,7 @@ public class UserService {
 
     }
     public User findById (Long id){
-        Optional<User> byId = repository.findById(id);
+        Optional<User> byId = repository.findById(id);//procura no banco de dados.
 
         return byId.get();//vai retornar o que estiver dentro do User.
     }
@@ -28,5 +28,17 @@ public class UserService {
     }
     public void delete (Long id){
         repository.deleteById(id);
+    }
+    public User update (Long id, User obj){
+        User entity = repository.getOne(id); //instancia o usuario. Não vai ao banco de dados.
+        updateData(entity,obj);
+        return repository.save(entity);
+    }
+
+    private void updateData(User entity, User obj) { //att entity com base no obj.
+        entity.setName(obj.getName());
+        entity.setEmail(obj.getEmail());
+        entity.setPhone(obj.getPhone());
+
     }
 }
